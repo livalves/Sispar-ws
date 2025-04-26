@@ -1,73 +1,185 @@
 .mainLogin {
-  display: flex;
+    display: flex;
+    height: 100vh;
+    width: 100%;
+    background-color: #fff;
+    overflow: hidden;
 }
 
 .containerFoto {
-  width: 65%;
-  height: 100vh;
-  //background-color: green;
-  background-image: url("../../assets/Tela\ Login/imagem tela de login.png");
-  background-repeat: no-repeat;
-  //background-size: contain;
-  //background-size: cover;
-  background-size: 100%;
-  background-position: center;
+    width: 65%;
+    height: 100vh;
+    background-image: url("../../assets/Tela\ Login/imagem tela de login.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
 }
 
 .formWapper {
-  //border: solid red;
-  width: 35%;
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-
-  .boxLogo {
-    height: 20vh;
+    width: 35%;
+    height: 100vh;
     display: flex;
     flex-direction: column;
+    justify-content: center;
     align-items: center;
-    justify-content: space-evenly;
-    //border: solid blue;
-    h1 {
-      width: 60%;
-      font-size: 2rem;
-      text-align: center;
+    padding: 2rem;
+    background-color: #fff;
+
+    .boxLogo {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-bottom: 2rem;
+        text-align: center;
+
+        img{
+            width: 80px;
+            height: auto;
+            margin-bottom: 1rem;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #001a3d;
+            margin-bottom: 0.5rem;
+            line-height: 1.2;
+        }
+
+        p {
+            font-size: 0.9rem;
+            color: #0844C4;
+            font-weight: bold;
+        }
     }
-    p {
-      color: blue;
-      font-size: 1rem;
+
+    form {     
+        width: 80%;         
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 0.75rem;
+        gap: 0.5em;
+
+        input {
+            width: 100%;
+            height: 45px;
+            padding: 0 0.75rem;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            outline: none;
+
+            &::placeholder {
+                color: #aaa;
+            }
+        }
+
+        .btnRecoveryPass {
+            border: none;
+            background-color: transparent;
+            font-size: 0.8rem;
+            margin-top: 0.5rem;
+            text-align: center;
+            cursor: pointer;
+            color: #000;
+            transition: color 0.3s ease;
+          
+            &:hover {
+                color: #00BEDD; 
+            }
+        }
     }
-  }
 
-  form {
-    height: 20vh;
-    //border: solid red;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
 
-    input {
-      height: 4vh;
-      width: 15vw;
-     
+    .boxButton{
+        display: flex;
+        justify-content: space-between;
+        gap: 1rem;
+        margin-top: 1rem;
+    
+        button{
+            width: auto;
+            height: 5vh;
+            border-radius: 6px;
+            font-size: 1rem;
+            border: none;
+            cursor: pointer;
+        }
+
+        span{
+            padding: 1em 2em;
+            font-size: 0.8rem;
+            font-weight: bold;
+            color: #fff;
+        }
+
+        .btnSignIn {
+            background-color: #001A3D;
+        }
+        
+        .btnSignUp {
+            background-color: #00BEDD;
+            align-items: center;
+        }
     }
-  }
-
-
-  .boxButton{
-    width: 100%;
-    //border: solid green;
-    display: flex;
-    justify-content: space-evenly;
-    button{
-        width: 5vw;
-        height: 4vh;
-        border-radius: 6px;
-        font-size: 1rem;
-    }
-  }
-
 }
+
+@media (max-width: 1024px) {
+    .mainLogin {
+        flex-direction: column;
+        background-image: url("../../assets/Tela\ Login/imagem tela de login.png");
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-color: rgba(0,0,0,0.4); 
+        position: relative;
+
+        .containerFoto {
+            display: none; 
+        }
+    
+        .formWapper {
+            width: 90%;
+            max-width: 400px;
+            height: auto;
+            margin: auto;
+            background-color: rgba(255, 255, 255, 0.95);
+            padding: 1.5rem;
+            border-radius: 12px;
+    
+            .boxLogo img {
+            width: 60px;
+            }
+    
+            .boxLogo h1 {
+            font-size: 1.2rem;
+            }
+    
+            .boxLogo p {
+            font-size: 0.8rem;
+            }
+    
+            form {
+            width: 100%;
+    
+            input {
+                height: 40px;
+                font-size: 0.85rem;
+            }
+        }
+  
+        .boxButton {
+            flex-direction: column;
+            gap: 0.8rem;
+    
+            button {
+                height: 45px;
+                font-size: 1rem;
+            }
+        }
+      }
+    }
+  }
