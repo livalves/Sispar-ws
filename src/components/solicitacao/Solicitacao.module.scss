@@ -1,239 +1,297 @@
 .layoutSolicitacao {
-  display: flex;
+    display: flex;
 }
 
 .containerPrincipalSolicitacao {
-  width: 95vw;
+    width: 94vw;
 }
 
 .headerSolicitacao {
-  //border: solid red;
-  width: 30vw;
-  display: flex;
+    // border: solid red;
+    display: flex;
 }
 
 .mainSolicitacao {
-  width: 100%;
-}
+    width: 100%;
+    padding: 0 2em;
 
-.formMain {
-  display: flex;
-  justify-content: space-between;
-}
-
-//Estilizzação padrão para os inputs, select , label e textarea
-
-label {
-  font-weight: 700;
-  font-size: 1rem;
-  color: #23282f;
+    .formMain {
+        display: flex;
+        justify-content: space-between;
+    }
 }
 
 input,
 select,
 textarea {
-  border-radius: 6px;
-  border: solid #cbd4e1 0.8px;
-  height: 4vh;
-  width: 100%;
+    border-radius: 6px;
+    border: solid #cbd4e1 0.8px;
+    height: 4vh;
+    width: 100%;
 }
 
 //Estilizção do grupo1
 .formGrupo1 {
-  width: 35%;
-  height: 25vh;
-  // border: solid green;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-}
+    width: 32%;
+    height: 25vh;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
 
-.inputNome {
-  // border: solid red;
-  width: 45%;
-}
+    .inputNome {
+        width: 40%;
+    }
+    
+    .inputEmpresa {
+        width: 25%;
+    }
+    
+    .inputPrestacao {
+        width: 30%;
+    }
+    
+    .inputMotivo {
+        width: 100%;
+    
+        textarea {
+            height: 10vh;
+        }
+    }
 
-.inputEmpresa {
-  //border: solid blue;
-  width: 25%;
-}
-
-.inputPrestacao {
-  //  border: solid green;
-  width: 25%;
-}
-
-.inputMotivo {
-  // border: solid orange;
-  width: 100%;
-
-  textarea {
-    height: 10vh;
-  }
+    label{
+        font-weight: bold;
+        font-size: 0.8rem;
+    }
 }
 
 //Estilização da barra vertical
-
 .barraVertical {
-  background-color: #cbd4e1;
-  height: 25vh;
-  width: 0.1vw;
+    background-color: #cbd4e1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 24vh;
+    width: 0.1vw;
 }
 
 //Estilizção do grupo2
 
 .formGrupo2 {
-  //border: solid green;
-  width: 60%;
-  height: 25vh;
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  align-items: center;
-}
-
-.inputData {
-  //border: solid green;
-  width: 20%;
-}
-
-.tipoDeDespesas {
-  // border: solid blue;
-  width: 30%;
-}
-
-.centroDeCusto {
-  //border: solid purple;
-  width: 45%;
-}
-
-.ordem,
-.divisoes,
-.pep,
-.distancia {
-  // border: solid red;
-  width: 8%;
-}
-
-.moeda,
-.valorKm,
-.valorFaturado,
-.despesa {
-  // border: solid pink;
-  width: 11%;
-}
-
-.botoes {
-  //border: solid red;
-  width: 15%;
-  display: flex;
-  justify-content: space-around;
-  padding-top: 0.5rem;
-  height: 6vh;
-
-  .salvar {
-    background-color: #001a3d;
-    color: #ffffff;
-    width: 60%;
-    font-size: 1rem;
+    width: 63%;
+    height: 25vh;
     display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
     align-items: center;
-    justify-content: space-evenly;
-  }
-  .deletar {
-    width: 30%;
-    background-color: #00bedd;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
+
+    label{
+        font-weight: bold;
+        font-size: 0.8rem;
+    }
+
+    .inputData {
+        width: 20%;
+    }
+    
+    .tipoDeDespesas {
+        width: 30%;
+    }
+    
+    .centroDeCusto {
+        width: 40%;
+    }
+
+    .pep,
+    .divisoes,
+    .moeda,
+    .distancia {
+        // border: solid red;
+        width: 8%;
+    }
+
+    .ordem,
+    .distancia,
+    .valorKm,
+    .taxa,
+    .valorFaturado {
+        // border: solid pink;
+        width: 11%;
+    }
+
+    .botoes {
+        //border: solid red;
+        width: 15%;
+        display: flex;
+        justify-content: space-around;
+        padding-top: 0.5rem;
+        height: 6vh;
+    
+        .salvar {
+            background-color: #001a3d;
+            color: #ffffff;
+            width: 60%;
+            font-size: 0.8rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-evenly;
+            transition: transform 0.2s ease;
+
+            img{
+                width: 1em;
+            }
+
+            &:hover{
+                cursor: pointer;
+                transform: scale(1.1);
+            }
+        }
+
+        .deletar {
+            width: 30%;
+            background-color: #00bedd;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.2s ease;
+
+            img{
+                width: 1.2em;
+            }
+
+            &:hover{
+                cursor: pointer;
+                transform: scale(1.1);
+            }
+        }
+    }
 }
 
 //Estilização da tabela
 table {
-  width: 100%;
-  border: solid;
-  border-collapse: collapse;
-}
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1em;
 
-//Cabeçalho
-th {
-  background-color: #CBD4E1;
-  font-size: 1rem;
-  font-weight: 400;
-  color: #23282f;
-  font-size: 1rem;
-}
+    th {
+        background-color: #dfe4ec;
+        color: #23282F;
+        font-size: 0.8rem;
+        border: solid #caced4 2px;
+        padding: 3px; 
+    }
 
-th,
-td {
-  border: solid;
-  text-align: center;
-}
+    td {
+        border: solid #caced4 2px;
+        text-align: center;
+        padding: 3px;
+        font-size: 0.8rem;
+        color: #23282F;
+    }
 
-.btnLixeira {
-  border: none;
-  :hover {
-    background-color: #a60b2f;
-    border-radius: 6px;
-  }
+    .btnLixeira {
+        border: none;
+        transition: transform 0.2s ease;
+
+        :hover{
+            cursor: pointer;
+            // background-color: #a60b2f;
+            transform: scale(1.1);
+        }
+    }
+
+    .btnMotivo {
+        border: none;
+        transition: transform 0.2s ease;
+
+        :hover{
+            cursor: pointer;
+            transform: scale(1.1);
+        }
+    }
 }
 
 
 //Footer
-
 .footerSolicitacao {
-  // background-color: pink;
-  display: flex;
-  justify-content: flex-end;
-  align-items: flex-end;
-  width: 100%;
-  height: 15vh;
-
-  section {
     display: flex;
-    justify-content: space-evenly;
-    align-items: center;
-    width: 50%;
+    justify-content: flex-end;
+    align-items: flex-end;
+    width: 100%;
     height: 15vh;
-  }
+    padding: 0 1em;
+    position: fixed;
+    bottom: 0;
+    left: 0;
 
-  div {
-    // border: solid;
-    width: 20%;
-    height: 10vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-  }
-
-  .boxButtonFooter {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
-    align-items: center;
-    width: 50%;
-
-    .buttonAnalise {
-      background-color: #001a3d;
-      width: 40%;
-      height: 6vh;
-      display: flex;
-      align-items: center;
-      justify-content: space-evenly;
-      color: white;
+    label{
+        font-weight: bold;
+        font-size: 0.8rem;
     }
 
-    .buttonCancelar {
-      background-color: #a60b2f;
-      width: 40%;
-      height: 6vh;
-      display: flex;
-      align-items: center;
-      justify-content: space-evenly;
-      color: white;
+    section {
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+        width: 50%;
+        height: 15vh;
     }
+
+    div {
+        width: 20%;
+        height: 10vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+    }
+
+    .boxButtonFooter {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+        align-items: center;
+        width: 50%;
+        gap: 1em;
+
+        .buttonAnalise {
+            background-color: #001a3d;
+            width: 50%;
+            height: 5vh;
+            display: flex;
+            align-items: center;
+            justify-content: space-evenly;
+            color: white;
+            transition: transform 0.2s ease;
+
+            img{
+                width: 1em;
+            }
+
+            &:hover{
+                cursor: pointer;
+                transform: scale(1.1);
+            }
+        }
+
+        .buttonCancelar {
+            background-color: #a60b2f;
+            width: 50%;
+            height: 5vh;
+            display: flex;
+            align-items: center;
+            justify-content: space-evenly;
+            color: white;
+            transition: transform 0.2s ease;
+
+            img{
+                width: 1em;
+            }
+
+            &:hover{
+                cursor: pointer;
+                transform: scale(1.1);
+            }
+        }
   }
 }
 
