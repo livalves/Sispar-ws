@@ -82,9 +82,11 @@ function Solicitacao() {
         }
     };
 
-    const [modalAberto, setModalAberto] = useState(false);
+    const [modalAbertoLinha, setModalAbertoLinha] = useState(false);
     const [indexParaDeletar, setIndexParaDeletar] = useState(null);
-    const [acaoConfirmada, setAcaoConfirmada] = useState(() => () => {}); 
+
+    const [modalAbertoDados, setModalAbertoDados] = useState(false);
+    const [modalAbertoSolicitacao, setModalAbertoSolicitacao] = useState(false);
 
     const handleDelete = (index) => {
         setDadosReembolso(dadosReembolso.filter((item, i) => i !== index));
@@ -241,28 +243,12 @@ function Solicitacao() {
                                 <button className={styles.salvar} onClick={handleSubmit} type="submit">
                                     <img src={Salvar} alt="" /> Salvar
                                 </button>
-
-                                {/* <button className={styles.deletar} type="button" onClick={() => {limparCampos();}}>
-                                    <img src={Deletar} alt="" />
-                                </button> */}
                                 <button 
-                                    onClick={() => {
-                                        setAcaoConfirmada(() => limparCampos); 
-                                        setModalAberto(true);       
+                                    onClick={() => { 
+                                        setModalAbertoDados(true);       
                                     }} className={styles.deletar} type="button">
                                     <img src={Deletar} alt="Deletar campos preenchidos" />
                                 </button>
-                                <Confirmacao
-                                    isOpen={modalAberto}
-                                    frase="Deseja realmente limpar os campos preenchidos acima?"
-                                    textoBotaoCancelar="Continuar Editando"
-                                    textoBotaoConfirmar="Sim, limpar"
-                                    onConfirm={() => {
-                                        acaoConfirmada(); 
-                                        setModalAberto(false);          
-                                    }}
-                                    onCancel={() => setModalAberto(false)} 
-                                />
                             </div>
                         </div>
                     </form>
@@ -293,27 +279,13 @@ function Solicitacao() {
                             {dadosReembolso.map((item, index) => (
                                 <tr key={index}>
                                 <td>
-                                    {/* <button onClick={() => handleDelete(index)} className={styles.btnLixeira}>
-                                        <img className={styles.lixeira} src={Lixeira} alt="Deletar"/>
-                                    </button> */}
                                     <button 
                                         onClick={() => {
                                             setIndexParaDeletar(index); 
-                                            setModalAberto(true);       
+                                            setModalAbertoLinha(true);       
                                         }} className={styles.btnLixeira} type="button"> 
                                         <img className={styles.lixeira} src={Lixeira} alt="Deletar" />
                                     </button>
-                                    <Confirmacao
-                                        isOpen={modalAberto}
-                                        frase="Deseja realmente excluir os dados dessa linha?"
-                                        textoBotaoCancelar="Continuar Editando"
-                                        textoBotaoConfirmar="Sim, excluir"
-                                        onConfirm={() => {
-                                            handleDelete(indexParaDeletar); 
-                                            setModalAberto(false);          
-                                        }}
-                                        onCancel={() => setModalAberto(false)} 
-                                    />
                                 </td>
                                 <td>{item.colaborador}</td>
                                 <td>{item.empresa}</td>
@@ -348,14 +320,15 @@ function Solicitacao() {
                         <div className={styles.inputFooter}>
                             <label> Total Faturado </label>
                             <input type="text" value={dadosReembolso
-                                .reduce((total, item) => total + Number(item.valorFaturado || 0), 0).toFixed(2)}/>
+                                .reduce((total, item) => total + Number(item.valorFaturado || 0), 0).toFixed(2)}
+                                readOnly/>
                         </div>
 
                         <div>
                             <label> Total Despesa </label>
                             <input type="text" value={dadosReembolso
                                 .reduce((total, item) => total + Number(item.despesa || 0), 0)
-                                .toFixed(2)}/>
+                                .toFixed(2)} readOnly/>
                         </div>
 
                         <div className={styles.boxButtonFooter}>
@@ -363,33 +336,48 @@ function Solicitacao() {
                                 {" "}
                                 <img src={Check} alt="" /> Enviar para Análise{" "}
                             </button>
-
-                            <button className={styles.buttonCancelar} onClick={cancelarSolicitacao}>
-                                {" "}
-                                <img src={Cancelar} alt="" /> Cancelar Solicitação{" "}
+                            <button 
+                                onClick={() => { 
+                                    setModalAbertoSolicitacao(true);       
+                                }} className={styles.buttonCancelar} type="button">
+                                <img src={Cancelar} alt="Cancelar solicitações inseridas" /> Cancelar Solicitação{" "}
                             </button>
-                            {/* <button 
-                                onClick={() => {
-                                    setSolicitacao(() => cancelarSolicitacao);  
-                                    setModalAberto(true);       
-                                }} 
-                                className={styles.buttonCancelar} type="button">
-                                <img src={Cancelar} alt="" /> Cancelar Solicitação{" "}
-                            </button>
-                            <Confirmacao
-                                isOpen={modalAberto}
-                                frase="Tem certeza que deseja cancelar a solicitação?"
-                                textoBotaoCancelar="Continuar Editando"
-                                textoBotaoConfirmar="Sim, cancelar"
-                                onConfirm={() => {
-                                    acaoSolicitacao(); 
-                                    setModalAberto(false);          
-                                }}
-                                onCancel={() => setModalAberto(false)} 
-                            /> */}
                         </div>
                     </section>
                 </footer>
+                <Confirmacao
+                    isOpen={modalAbertoDados}
+                    frase="Deseja realmente limpar os campos preenchidos acima?"
+                    textoBotaoCancelar="Continuar Editando"
+                    textoBotaoConfirmar="Sim, limpar"
+                    onConfirm={() => {
+                        limparCampos(); 
+                        setModalAbertoDados(false);          
+                    }}
+                    onCancel={() => setModalAbertoDados(false)} 
+                />
+                <Confirmacao
+                    isOpen={modalAbertoLinha}
+                    frase="Deseja realmente excluir os dados dessa linha?"
+                    textoBotaoCancelar="Continuar Editando"
+                    textoBotaoConfirmar="Sim, excluir"
+                    onConfirm={() => {
+                        handleDelete(indexParaDeletar);
+                        setModalAbertoLinha(false);          
+                    }}
+                    onCancel={() => setModalAbertoLinha(false)} 
+                />
+                <Confirmacao
+                    isOpen={modalAbertoSolicitacao}
+                    frase="Tem certeza que deseja cancelar a solicitação?"
+                    textoBotaoCancelar="Continuar Editando"
+                    textoBotaoConfirmar="Sim, cancelar"
+                    onConfirm={() => {
+                        cancelarSolicitacao(); 
+                        setModalAbertoSolicitacao(false);          
+                    }}
+                    onCancel={() => setModalAbertoSolicitacao(false)} 
+                />
             </div>
         </div>
     );
