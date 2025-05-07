@@ -34,39 +34,39 @@ function Rembolsos() {
 
                     <section className={styles.containerCards}>
                         <article className={styles.card}  onClick={()=>{navigate("/solicitacao")}} > 
-                            <img src={SolicitarReembolso} alt="" />
+                            <img src={SolicitarReembolso} alt="Icone de formulário" />
                             <p>Solicitar Reembolso</p>
                         </article>
 
                         <article className={styles.card}>
-                            <img src={Analises} alt="" />
+                            <img src={Analises} alt="Icone de listagem" />
                             <p>Verificar análises</p>
                         </article>
 
                         <article className={styles.card}>
-                            <img src={SolicitarHistorico} alt="" />
+                            <img src={SolicitarHistorico} alt="Icone de histórico" />
                             <p>Histórico</p>
                         </article>
                     </section>
 
                     <section className={styles.containerDados}>
                         <div>
-                            <img className={styles.imgSolicitados} src={NumeroSolicitados} alt=""/>
+                            <img className={styles.imgSolicitados} src={NumeroSolicitados} alt="Icone para quantidade de solicitações"/>
                             <p> <span> 182 </span> Solicitados</p>
                         </div>
 
                         <div>
-                            <img className={styles.imgAnalise} src={NumeroAnalises} alt="" />
+                            <img className={styles.imgAnalise} src={NumeroAnalises} alt="Icone para quantidade de pedidos em análise" />
                             <p> <span> 74 </span> Em análise</p>
                         </div>
 
                         <div>
-                            <img className={styles.imgAprovados} src={NumeroAprovados} alt="" />
+                            <img className={styles.imgAprovados} src={NumeroAprovados} alt="Icone para quantidade de pedidos aprovados" />
                             <p> <span> 195 </span> Aprovados</p>
                         </div>
 
                         <div>
-                            <img className={styles.imgRejeitados} src={NumeroRejeitados} alt=""/>
+                            <img className={styles.imgRejeitados} src={NumeroRejeitados} alt="Icone para quantidade de pedidos rejeitados"/>
                             <p> <span> 41 </span> Rejeitados</p>
                         </div>
                     </section>

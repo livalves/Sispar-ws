@@ -140,7 +140,7 @@ function Solicitacao() {
 
                             <div className={styles.inputEmpresa}>
                                 <label htmlFor="empresa">Empresa</label>
-                                <input name="empresa" value={empresa} onChange={(e) => setEmpresa(e.target.value)} type="text"/>
+                                <input required name="empresa" value={empresa} onChange={(e) => setEmpresa(e.target.value)} type="text"/>
                             </div>
 
                             <div className={styles.inputPrestacao}>
@@ -152,7 +152,7 @@ function Solicitacao() {
                                 <label htmlFor="descricao">
                                     Descrição / Motivo do Reembolso
                                 </label>
-                                <textarea name="descricao" value={descricao} onChange={(e) => setDescricao(e.target.value)} />
+                                <textarea required name="descricao" value={descricao} onChange={(e) => setDescricao(e.target.value)} />
                             </div>
                         </div>
 
@@ -161,7 +161,7 @@ function Solicitacao() {
                         <div className={styles.formGrupo2}>
                             <div className={styles.inputData}>
                                 <label htmlFor="date"> Data</label>
-                                <input value={data} onChange={(e) => setData(e.target.value)} type="date" name="data"/>
+                                <input required value={data} onChange={(e) => setData(e.target.value)} type="date" name="data"/>
                             </div>
 
                             <div className={styles.selectDespesas}>
@@ -196,22 +196,22 @@ function Solicitacao() {
 
                             <div className={styles.ordem}>
                                 <label htmlFor="ordemInterna">Ord. Int.</label>
-                                <input value={ordemInterna} name="ordemInterna" onChange={(e) => setorOrdemInterna(e.target.value)} id="ordemInterna" type="text"/>
+                                <input value={ordemInterna} name="ordemInterna" onChange={(e) => setorOrdemInterna(e.target.value)} id="ordemInterna" type="number"/>
                             </div>
 
                             <div className={styles.pep}>
                                 <label htmlFor="pep">PEP</label>
-                                <input value={pep} onChange={(e) => setPep(e.target.value)} name="pep" id="PEP" type="text"/>
+                                <input value={pep} onChange={(e) => setPep(e.target.value)} name="pep" id="PEP" type="number"/>
                             </div>
 
                             <div className={styles.divisoes}>
                                 <label htmlFor="divisao">Div.</label>
-                                <input type="text" id="divisao" onChange={(e) => setDivisao(e.target.value)} name="divisao" value={divisao}/>
+                                <input ttype="number" id="divisao" onChange={(e) => setDivisao(e.target.value)} name="divisao" value={divisao}/>
                             </div>
 
                             <div className={styles.distancia}>
                                 <label htmlFor="distancia">Dist./Km</label>
-                                <input value={distanciaKm} name="distanciaKm" onChange={(e) => setDistanciaKm(e.target.value)} id="distance-input" type="text"/>
+                                <input value={distanciaKm} name="distanciaKm" onChange={(e) => setDistanciaKm(e.target.value)} id="distance-input" type="number"/>
                             </div>
 
                             <div className={styles.moeda}>
@@ -226,22 +226,22 @@ function Solicitacao() {
 
                             <div className={styles.valorKm}>
                                 <label htmlFor="valor">Valor/Km</label>
-                                <input value={valorKm} onChange={(e) => setValorKm(e.target.value)} name="valorKm" type="text"/>
+                                <input value={valorKm} onChange={(e) => setValorKm(e.target.value)} name="valorKm" type="number"/>
                             </div>
 
                             <div className={styles.taxa}>
                                 <label htmlFor="taxa"> Val. Taxa </label>
-                                <input type="text" id="despesa" name="despesa" value={despesa} onChange={(e) => setDespesa(e.target.value)}/>
+                                <input type="number" id="despesa" name="despesa" value={despesa} onChange={(e) => setDespesa(e.target.value)}/>
                             </div>
 
                             <div className={styles.valorFaturado}>
                                 <label htmlFor="faturado"> Val. Faturado </label>
-                                <input type="text" name="valorFaturado" value={valorFaturado} onChange={(e) => setValorFaturado(e.target.value)}/>
+                                <input type="number" name="valorFaturado" value={valorFaturado} onChange={(e) => setValorFaturado(e.target.value)}/>
                             </div>
 
                             <div className={styles.botoes}>
                                 <button className={styles.salvar} onClick={handleSubmit} type="submit">
-                                    <img src={Salvar} alt="" /> Salvar
+                                    <img src={Salvar} alt="Salvar campos preenchidos" /> Salvar
                                 </button>
                                 <button 
                                     onClick={() => { 
@@ -334,7 +334,7 @@ function Solicitacao() {
                         <div className={styles.boxButtonFooter}>
                             <button className={styles.buttonAnalise} onClick={enviarParaAnalise}>
                                 {" "}
-                                <img src={Check} alt="" /> Enviar para Análise{" "}
+                                <img src={Check} alt="Enviar solicitações inseridas" /> Enviar para Análise{" "}
                             </button>
                             <button 
                                 onClick={() => { 
