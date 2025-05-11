@@ -25,12 +25,17 @@ const fazerLogin = async (e) => {
             "email": email, 
             "senha": senha
         }) 
-        console.log(response.data) 
+        //console.log(response.data) 
         //navigate("/reembolsos") 
         //alert("Login realizado com sucesso!")
+
+        const token = response.data.token; 
+        localStorage.setItem("token", token); 
+
         irParaReembolsos() 
     } catch (error) {
         console.error("Erro ao fazer login:", error)
+        alert("Email ou senha incorretos! Verifique e tente novamente.")
     }
 }
 

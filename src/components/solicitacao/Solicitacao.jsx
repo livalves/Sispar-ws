@@ -10,7 +10,7 @@ import Motivo from "../../assets/Solicitacao/motivo.png";
 import Check from "../../assets/Solicitacao/check.png";
 import Cancelar from "../../assets/Solicitacao/x.png";
 
-import Api from "../../Services/Api.jsx"; //importando a conexão
+import api from "../../Services/Api.jsx"; //importando a conexão
 import Confirmacao from "../confirmacao/Confirmacao.jsx"; //importando o modal de confirmação
 
 function Solicitacao() {
@@ -40,7 +40,8 @@ function Solicitacao() {
         }
     }, [enviado]);
 
-    const handleSubmit = () => {
+    const handleSubmit = (e) => {
+        e.preventDefault();
         const objetoReembolso = {
             empresa,
             colaborador,
@@ -65,12 +66,11 @@ function Solicitacao() {
     };
 
     //--------------------FUNÇÃO PARA ENVIAR OS DADOS PARA O BD -----------
-    const token =
-        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTc0NDM5ODU5NiwianRpIjoiOTdkNWI0YmUtOTU3My00ZmEzLTlkY2ItMjE2MGY3MmRiZmUzIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6IjEiLCJuYmYiOjE3NDQzOTg1OTYsImNzcmYiOiIwNGViOTcwNy05NDFjLTQwYWItOTJiZS04ZjU0MTliNGFmOTQiLCJleHAiOjE3NDQzOTk0OTZ9.R87xKzHSVishWF8ZNjWnRnhfoEmS0GXx4sN2y6TUR70";
+    const token = localStorage.getItem("token");
 
     const enviarParaAnalise = async () => {
         try {
-            const response = await Api.post("/refunds/new", dadosReembolso, {
+            const response = await api.post("/reembolsos/envio-para-analise", dadosReembolso, {
                 headers: {
                 authorization: `Bearer ${token}`,
                 "Content-Type": "application/json",
@@ -131,21 +131,21 @@ function Solicitacao() {
                 </header>
 
                 <main className={styles.mainSolicitacao}>
-                    <form onSubmit={(e) => e.preventDefault()} className={styles.formMain}>
+                    <form onSubmit={handleSubmit} className={styles.formMain}>
                         <div className={styles.formGrupo1}>
                             <div className={styles.inputNome}>
                                 <label htmlFor="nome"> Nome Completo</label>
-                                <input value={colaborador} name="colaborador" onChange={(e) => setColaborador(e.target.value)} type="text"/>
+                                <input required value={colaborador} name="colaborador" onChange={(e) => setColaborador(e.target.value)} type="text"/>
                             </div>
 
                             <div className={styles.inputEmpresa}>
                                 <label htmlFor="empresa">Empresa</label>
-                                <input required name="empresa" value={empresa} onChange={(e) => setEmpresa(e.target.value)} type="text"/>
+                                <input required ="empresa" value={empresa} onChange={(e) => setEmpresa(e.target.value)} type="text"/>
                             </div>
 
                             <div className={styles.inputPrestacao}>
                                 <label htmlFor="prestacao"> Nº Prest. Contas</label>
-                                <input value={nPrestacao} onChange={(e) => setnPrestacao(e.target.value)} type="number" name="nPrestacao"/>
+                                <input required value={nPrestacao} onChange={(e) => setnPrestacao(e.target.value)} type="number" name="nPrestacao"/>
                             </div>
 
                             <div className={styles.inputMotivo}>
@@ -166,7 +166,7 @@ function Solicitacao() {
 
                             <div className={styles.selectDespesas}>
                                 <label htmlFor="tipoReembolso"> Tipo de Despesa </label>
-                                <select value={tipoReembolso} name="tipoReembolso" onChange={(e) => setTipoReembolso(e.target.value)} id="tipoReembolso">
+                                <select required value={tipoReembolso} name="tipoReembolso" onChange={(e) => setTipoReembolso(e.target.value)} id="tipoReembolso">
                                     <option value="selecionar">Selecionar</option>
                                     <option value="alimentacao">Alimentação</option>
                                     <option value="combustivel">Combustível</option>
@@ -196,7 +196,7 @@ function Solicitacao() {
 
                             <div className={styles.ordem}>
                                 <label htmlFor="ordemInterna">Ord. Int.</label>
-                                <input value={ordemInterna} name="ordemInterna" onChange={(e) => setorOrdemInterna(e.target.value)} id="ordemInterna" type="number"/>
+                                <input required value={ordemInterna} name="ordemInterna" onChange={(e) => setorOrdemInterna(e.target.value)} id="ordemInterna" type="number"/>
                             </div>
 
                             <div className={styles.pep}>
@@ -216,7 +216,7 @@ function Solicitacao() {
 
                             <div className={styles.moeda}>
                                 <label htmlFor="moeda">Moeda</label>
-                                <select value={moeda} onChange={(e) => setMoeda(e.target.value)} name="moeda" id="coents">
+                                <select required value={moeda} onChange={(e) => setMoeda(e.target.value)} name="moeda" id="coents">
                                     <option value=""></option>
                                     <option value="brl">BRL</option>
                                     <option value="ars">ARS</option>
@@ -236,11 +236,11 @@ function Solicitacao() {
 
                             <div className={styles.valorFaturado}>
                                 <label htmlFor="faturado"> Val. Faturado </label>
-                                <input type="number" name="valorFaturado" value={valorFaturado} onChange={(e) => setValorFaturado(e.target.value)}/>
+                                <input required type="number" name="valorFaturado" value={valorFaturado} onChange={(e) => setValorFaturado(e.target.value)}/>
                             </div>
 
                             <div className={styles.botoes}>
-                                <button className={styles.salvar} onClick={handleSubmit} type="submit">
+                                <button className={styles.salvar} type="submit">
                                     <img src={Salvar} alt="Salvar campos preenchidos" /> Salvar
                                 </button>
                                 <button 
