@@ -12,6 +12,7 @@ import Cancelar from "../../assets/Solicitacao/x.png";
 
 import api from "../../Services/Api.jsx"; //importando a conexão
 import Confirmacao from "../confirmacao/Confirmacao.jsx"; //importando o modal de confirmação
+import ModalMotivo from "../motivo/Motivo.jsx"; //importando o modal de motivo
 
 function Solicitacao() {
     const [colaborador, setColaborador] = useState(""); 
@@ -81,6 +82,10 @@ function Solicitacao() {
             console.error("Erro ao enviar:", error);
         }
     };
+
+    const [modalMotivoAberto, setModalMotivoAberto] = useState(false);
+    const [indexMotivoAberto, setIndexMotivoAberto] = useState(null);
+
 
     const [modalAbertoLinha, setModalAbertoLinha] = useState(false);
     const [indexParaDeletar, setIndexParaDeletar] = useState(null);
@@ -293,12 +298,15 @@ function Solicitacao() {
                                 <td>{item.data}</td>
 
                                 <td>
-                                    <button className={styles.btnMotivo}>
-                                        <img src={Motivo} alt="Motivo" />
+                                    <button className={styles.btnMotivo} 
+                                        onClick={() => {
+                                            setIndexMotivoAberto(index); 
+                                            setModalMotivoAberto(true);   
+                                        }}>
+                                        <img src={Motivo} alt="Icone para acesso ao Motivo"/>
                                     </button>
                                 </td>
 
-                                {/* <td>{item.descricao}</td> */}
                                 <td>{item.tipoReembolso}</td>
                                 <td>{item.centroCusto}</td>
                                 <td>{item.ordemInterna}</td>
@@ -377,6 +385,14 @@ function Solicitacao() {
                         setModalAbertoSolicitacao(false);          
                     }}
                     onCancel={() => setModalAbertoSolicitacao(false)} 
+                />
+                <ModalMotivo
+                    isOpen={modalMotivoAberto}
+                    texto={dadosReembolso[indexMotivoAberto]?.descricao || "Sem motivo informado."}
+                    onClose={() => {
+                    setModalMotivoAberto(false);
+                    setIndexMotivoAberto(null);
+                    }}
                 />
             </div>
         </div>
