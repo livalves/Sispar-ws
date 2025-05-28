@@ -60,24 +60,52 @@ function Solicitacao() {
             valorFaturado,
             despesa,
         };
-        //alert("Formulário enviado com sucesso!"); //mostra um alerta na tela para o usuário, avisando que o formulário foi enviado corretamente
+        //alert("Formulário enviado com sucesso!"); 
 
         setDadosReembolso(dadosReembolso.concat(objetoReembolso));
         limparCampos(); 
     };
 
-    //--------------------FUNÇÃO PARA ENVIAR OS DADOS PARA O BD -----------
-    const token = localStorage.getItem("token");
+    const formatarDadosParaEnvio = (dados) => ({
+        colaborador: dados.colaborador,
+        empresa: dados.empresa,
+        num_prestacao: Number(dados.nPrestacao),
+        descricao: dados.descricao,
+        data: dados.data,
+        tipo_reembolso: dados.tipoReembolso,
+        centro_custo: dados.centroCusto,
+        ordem_interna: Number(dados.ordemInterna),
+        divisao: Number(dados.divisao),
+        pep: Number(dados.pep),
+        moeda: dados.moeda,
+        distancia_km: Number(dados.distanciaKm),
+        valor_km: Number(dados.valorKm),
+        valor_faturado: Number(dados.valorFaturado),
+        despesa: Number(dados.despesa),
+    });
 
+    //--------------------FUNÇÃO PARA ENVIAR OS DADOS PARA O BD -----------
     const enviarParaAnalise = async () => {
+        console.log("Dados ORIGINAIS:", dadosReembolso);
+        const token = localStorage.getItem("token");
+
+         if (!token) {
+            console.error("Token não encontrado no localStorage");
+            return;
+        }
+
+        const dadosFormatados = dadosReembolso.map(formatarDadosParaEnvio);
+        console.log("Dados ENVIADOS:", dadosFormatados);
+
         try {
-            const response = await api.post("/reembolsos/envio-para-analise", dadosReembolso, {
+            const response = await api.post("/reembolsos/envio-para-analise", dadosFormatados, {
                 headers: {
                 authorization: `Bearer ${token}`,
                 "Content-Type": "application/json",
                 },
             });
             setEnviado(true);
+            alert("Solicitações enviadas com sucesso!");
         } catch (error) {
             console.error("Erro ao enviar:", error);
         }
@@ -172,7 +200,7 @@ function Solicitacao() {
                             <div className={styles.selectDespesas}>
                                 <label htmlFor="tipoReembolso"> Tipo de Despesa </label>
                                 <select required value={tipoReembolso} name="tipoReembolso" onChange={(e) => setTipoReembolso(e.target.value)} id="tipoReembolso">
-                                    <option value="selecionar">Selecionar</option>
+                                    <option value="" disabled>Selecionar</option>
                                     <option value="alimentacao">Alimentação</option>
                                     <option value="combustivel">Combustível</option>
                                     <option value="conducao">Condução</option>
@@ -185,8 +213,8 @@ function Solicitacao() {
 
                             <div className={styles.centroDeCusto}>
                                 <label htmlFor="custo">Controle de Custo</label>
-                                <select value={centroCusto} onChange={(e) => setCentroCusto(e.target.value)} name="centroCusto" id="centroCusto">
-                                    <option value="">Selecionar</option>
+                                <select required value={centroCusto} onChange={(e) => setCentroCusto(e.target.value)} name="centroCusto" id="centroCusto">
+                                    <option value="" disabled>Selecionar</option>
                                     <option value="FIN CONTROLES INTERNOS MTZ">
                                         1100109002 - FIN CONTROLES INTERNOS MTZ
                                     </option>
@@ -211,7 +239,7 @@ function Solicitacao() {
 
                             <div className={styles.divisoes}>
                                 <label htmlFor="divisao">Div.</label>
-                                <input ttype="number" id="divisao" onChange={(e) => setDivisao(e.target.value)} name="divisao" value={divisao}/>
+                                <input type="number" id="divisao" onChange={(e) => setDivisao(e.target.value)} name="divisao" value={divisao}/>
                             </div>
 
                             <div className={styles.distancia}>
