@@ -88,6 +88,7 @@ function Solicitacao() {
     const enviarParaAnalise = async () => {
         console.log("Dados ORIGINAIS:", dadosReembolso);
         const token = localStorage.getItem("token");
+        console.log("TOKEN:", token);
 
          if (!token) {
             console.error("Token não encontrado no localStorage");
@@ -96,11 +97,12 @@ function Solicitacao() {
 
         const dadosFormatados = dadosReembolso.map(formatarDadosParaEnvio);
         console.log("Dados ENVIADOS:", dadosFormatados);
+        console.log("Dado tipo:", typeof dadosFormatados);
 
         try {
             const response = await api.post("/reembolsos/envio-para-analise", dadosFormatados, {
                 headers: {
-                authorization: `Bearer ${token}`,
+                Authorization: `Bearer ${token}`,
                 "Content-Type": "application/json",
                 },
             });
