@@ -1,0 +1,63 @@
+.layoutAnalises {
+    display: flex;
+}
+
+.containerPrincipalSolicitacao {
+    width: 94vw;
+}
+
+.headerAnalises {
+    display: flex;
+    padding: 2em 2em;
+}
+
+.containerBusca{
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding: 1em 2em;
+
+    input {
+        width: 30%;
+        height: 2rem;
+        padding: 0.5rem;
+        border-radius: 0.25rem 0 0 0.25rem;
+    }
+
+    button {
+        padding: 0.5rem 1rem;
+        height: 2rem;
+        background-color: #001a3d;
+        color: white;
+        border: none;
+        border-radius: 0 0.25rem 0.25rem 0;
+        cursor: pointer;
+        transition: transform 0.2s ease;
+
+        &:hover {
+            transform: scale(1.1);
+        }
+    }
+}
+
+.containerAnalises {
+    width: 100%;
+    padding: 0 2em;
+
+    .formMain {
+        display: flex;
+        justify-content: space-between;
+    }
+}
+
+.btnMotivo {
+    border: none;
+    transition: transform 0.2s ease;
+
+    :hover{
+        cursor: pointer;
+        transform: scale(1.1);
+    }
+}
+
+

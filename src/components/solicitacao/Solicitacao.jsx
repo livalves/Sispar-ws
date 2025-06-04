@@ -86,18 +86,14 @@ function Solicitacao() {
 
     //--------------------FUNÇÃO PARA ENVIAR OS DADOS PARA O BD -----------
     const enviarParaAnalise = async () => {
-        console.log("Dados ORIGINAIS:", dadosReembolso);
         const token = localStorage.getItem("token");
-        console.log("TOKEN:", token);
 
          if (!token) {
-            console.error("Token não encontrado no localStorage");
+            alert("Não foi possível enviar para análise. Faça login novamente!");
             return;
         }
 
         const dadosFormatados = dadosReembolso.map(formatarDadosParaEnvio);
-        console.log("Dados ENVIADOS:", dadosFormatados);
-        console.log("Dado tipo:", typeof dadosFormatados);
 
         try {
             const response = await api.post("/reembolsos/envio-para-analise", dadosFormatados, {
@@ -109,7 +105,7 @@ function Solicitacao() {
             setEnviado(true);
             alert("Solicitações enviadas com sucesso!");
         } catch (error) {
-            console.error("Erro ao enviar:", error);
+            alert("Envio não realizado. Tente novamente!", error);
         }
     };
 

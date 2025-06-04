@@ -38,12 +38,12 @@ function Rembolsos() {
                             <p>Solicitar Reembolso</p>
                         </article>
 
-                        <article className={styles.card}>
+                        <article className={styles.card} onClick={()=>{navigate("/pesquisa")}}>
                             <img src={Analises} alt="Icone de listagem" />
                             <p>Verificar análises</p>
                         </article>
 
-                        <article className={styles.card}>
+                        <article className={styles.card} onClick={()=>{navigate("/historico")}}>
                             <img src={SolicitarHistorico} alt="Icone de histórico" />
                             <p>Histórico</p>
                         </article>

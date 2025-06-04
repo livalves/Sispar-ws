@@ -25,9 +25,6 @@ const fazerLogin = async (e) => {
             "email": email, 
             "senha": senha
         }) 
-        //console.log(response.data) 
-        //navigate("/reembolsos") 
-        //alert("Login realizado com sucesso!")
 
         const token = response.data.token; 
         localStorage.setItem("token", token); 
@@ -62,7 +59,7 @@ return (
                     <button className={styles.btnSignIn} onClick={fazerLogin}> 
                         <span> Entrar </span> 
                     </button>
-                    <button className={styles.btnSignUp}> 
+                    <button className={styles.btnSignUp} onClick={()=>{navigate("/cadastro")}} > 
                         <span> Criar conta </span> 
                     </button>
                 </div>
