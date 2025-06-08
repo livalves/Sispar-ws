@@ -30,7 +30,6 @@ textarea {
     width: 100%;
 }
 
-//Estilizção do grupo1
 .formGrupo1 {
     width: 32%;
     height: 25vh;
@@ -65,7 +64,7 @@ textarea {
     }
 }
 
-//Estilização da barra vertical
+
 .barraVertical {
     background-color: #cbd4e1;
     display: flex;
@@ -75,7 +74,6 @@ textarea {
     width: 0.1vw;
 }
 
-//Estilizção do grupo2
 
 .formGrupo2 {
     width: 63%;
@@ -168,8 +166,6 @@ input, textarea, select {
     padding: 6px;
 }
 
-
-//Estilização da tabela
 table {
     width: 100%;
     border-collapse: collapse;
@@ -213,8 +209,6 @@ table {
     }
 }
 
-
-//Footer
 .footerSolicitacao {
     display: flex;
     justify-content: flex-end;
@@ -294,6 +288,6 @@ table {
                 transform: scale(1.1);
             }
         }
-  }
+    }
 }
 
